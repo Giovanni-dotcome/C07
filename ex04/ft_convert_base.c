@@ -6,19 +6,37 @@
 /*   By: gde-vito <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:57:39 by gde-vito          #+#    #+#             */
-/*   Updated: 2023/03/02 10:05:51 by gde-vito         ###   ########.fr       */
+/*   Updated: 2023/03/06 09:12:54 by gde-vito         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
 #include <stdlib.h>
 
-int		ft_strlen(char *str);
+int	is_sign(char c);
+unsigned int		ft_strlen(char *str);
 
 void	get_num(char **nbr, char *base);
 
 void	get_sign(char **nbr, int *sign);
 
-int		char_in_str(int v, char c, char *str);
+unsigned int		char_in_str(int v, char c, char *str);
+
+int	base_is_correct(char *base)
+{
+	int	i;
+	int	seen[256] = {0};
+
+	i = 0;
+	if (ft_strlen(base) < 2)
+		return (0);
+	while (base[i])
+	{
+		if (is_sign(base[i]) || seen[base[i]])
+			return (0);
+		seen[base[i++]]++;
+	}	
+	return (1);
+}
 
 int	ft_log(int base, int exp)
 {
@@ -34,12 +52,12 @@ int	ft_log(int base, int exp)
 	return i;
 }
 
-int	atoi_base_to_ten(char *nbr, char *base)
+unsigned int	atoi_base_to_ten(char *nbr, char *base)
 {
-	int i;
-	int	n;
-	int	val;
-	int b;
+	int				i;
+	unsigned int	n;
+	unsigned int	val;
+	unsigned int	b;
 
 	i = 0;
 	n = 0;
@@ -65,6 +83,8 @@ char	*itoa_ten_to_base(int num, char *base, int sign)
 	len_arr = ft_log(num, b) + sign;
 	arr = malloc(len_arr);
 	i = len_arr - 1;
+	if (!num)
+		return "0";
 	while (num)
 	{
 		arr[i--] = base[(num % b)];
@@ -77,19 +97,20 @@ char	*itoa_ten_to_base(int num, char *base, int sign)
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
-	int		sign;
-	int		num_ten;
-	char	*arr_base;
+	int					sign;
+	unsigned int		num_ten;
+	char				*arr_base;
+
+	if (!base_is_correct(base_from) || !base_is_correct(base_to))
+		return (0);
 
 	get_num(&nbr, base_from);
 	get_sign(&nbr, &sign);
 
+	printf("str: %s\n", nbr);
 	num_ten = atoi_base_to_ten(nbr, base_from);
+	printf("num: %d\n", num_ten);
 	arr_base = itoa_ten_to_base(num_ten, base_to, sign);
 
-	// printf("nbr:%s\n", nbr);
-	// printf("num_ten:%d\n", num_ten);
-    printf("arr_base:%s\n", arr_base);
-
-	return arr_base;
+	return (arr_base);
 }
