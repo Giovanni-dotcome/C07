@@ -6,13 +6,13 @@
 /*   By: gde-vito <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:19:34 by gde-vito          #+#    #+#             */
-/*   Updated: 2023/03/06 08:58:23 by gde-vito         ###   ########.fr       */
+/*   Updated: 2023/03/06 09:25:27 by gde-vito         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned int ft_strlen(char *str)
+ int ft_strlen(char *str)
 {
-    unsigned int l;
+     int l;
 
     l = 0;
     while (str[l])
@@ -20,9 +20,9 @@ unsigned int ft_strlen(char *str)
     return l;
 }
 
-unsigned int	char_in_str(int v, char c, char *str)
+ int	char_in_str(int v, char c, char *str)
 {
-	unsigned int	i;
+	 int	i;
 
 	i = 0;
 	while (str[i])

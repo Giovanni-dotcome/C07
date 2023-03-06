@@ -6,20 +6,20 @@
 /*   By: gde-vito <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:57:39 by gde-vito          #+#    #+#             */
-/*   Updated: 2023/03/06 09:12:54 by gde-vito         ###   ########.fr       */
+/*   Updated: 2023/03/06 09:25:26 by gde-vito         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
 #include <stdlib.h>
 
-int	is_sign(char c);
-unsigned int		ft_strlen(char *str);
+int		is_sign(char c);
+int		ft_strlen(char *str);
 
 void	get_num(char **nbr, char *base);
 
 void	get_sign(char **nbr, int *sign);
 
-unsigned int		char_in_str(int v, char c, char *str);
+int		char_in_str(int v, char c, char *str);
 
 int	base_is_correct(char *base)
 {
@@ -72,7 +72,7 @@ unsigned int	atoi_base_to_ten(char *nbr, char *base)
 	return n;
 }
 
-char	*itoa_ten_to_base(int num, char *base, int sign)
+char	*itoa_ten_to_base(unsigned int num, char *base, int sign)
 {
 	int	b;
 	int i;
@@ -97,9 +97,9 @@ char	*itoa_ten_to_base(int num, char *base, int sign)
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
-	int					sign;
-	unsigned int		num_ten;
-	char				*arr_base;
+	int		sign;
+	int		num_ten;
+	char	*arr_base;
 
 	if (!base_is_correct(base_from) || !base_is_correct(base_to))
 		return (0);
