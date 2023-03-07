@@ -10,34 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
-#include <limits.h>
 
-int	ft_abs(int a)
+int		ft_ultimate_range(int **range, int min, int max)
 {
-	if (a < 0)
-		return (-a);
-	return (a);
-}
+	int *tab;
+	int i;
 
-int	ft_ultimate_range(int **range, int min, int max)
-{
-	int	i;
-	int	range;
-
-	rng = ft_abs(max - min);
-	if (malloc(rng * sizeof(int)) == NULL)
-		return (-1);
 	if (min >= max)
 	{
-		range = 0;
+		*range = NULL;
 		return (0);
 	}
-	*range = (int *) malloc(sizeof(int) * rng);
-	i = 0;
-	while (i < range)
+	tab = (int*)malloc(sizeof(*tab) * (max - min));
+	if (tab == NULL)
+		return (-1);
+	else
 	{
-		(*range)[i] = min + i;
-		i++;
+		i = -1;
+		while (++i < max - min)
+			tab[i] = min + i;
+		*range = tab;
+		return (i);
 	}
-	return (rng);
 }

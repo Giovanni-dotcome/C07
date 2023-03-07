@@ -12,27 +12,21 @@
 
 #include <stdlib.h>
 
-int	ft_abs(int a)
+int		*ft_range(int min, int max)
 {
-	if (a < 0)
-		return (-a);
-	return (a);
-}
-
-int	*ft_range(int min, int max)
-{
-	int	*arr;
-	int	range;
-	int	i;
-	int	j;
+	int		*tab;
+	int		i;
 
 	if (min >= max)
-		return (0);
-	range = ft_abs(max - min);
-	arr = malloc(sizeof(int) * range);
-	i = 0;
-	j = min;
-	while (i < range)
-		arr[i++] = j++;
-	return (arr);
+		return (NULL);
+	tab = (int*)malloc(sizeof(*tab) * (max - min));
+	if (tab == NULL)
+		return (NULL);
+	else
+	{
+		i = -1;
+		while (++i < max - min)
+			tab[i] = min + i;
+		return (tab);
+	}
 }

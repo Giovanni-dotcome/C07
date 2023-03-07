@@ -10,35 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include <stdlib.h>
-
-int	ft_strlen(char *str)
-{
-	int	len;
-
-	len = 0;
-	while (str[len])
-		len++;
-	return (len);
-}
-
-void	ft_strcpy(char *dst, char *src)
-{
-	int	i;
-
-	i = 0;
-	while (src[i])
-	{
-		dst[i] = src[i];
-		i++;
-	}	
-}
 
 char	*ft_strdup(char *src)
 {
-	char	*dup;
+	char	*dest;
+	int		i;
 
-	dup = malloc(ft_strlen(src) * sizeof(char));
-	ft_strcpy(dup, src);
-	return (dup);
+	i = 0;
+	while (src[i])
+		i++;
+	dest = malloc(sizeof(src) * i);
+	i = 0;
+	if (dest == NULL)
+		return (0);
+	else
+	{
+		while (src[i])
+		{
+			dest[i] = src[i];
+			i++;
+		}
+		dest[i] = '\0';
+		return (dest);
+	}
 }

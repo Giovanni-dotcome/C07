@@ -9,7 +9,6 @@
 /*   Updated: 2023/03/06 09:25:26 by gde-vito         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
 #include <stdlib.h>
 
 int		is_sign(char c);
@@ -107,9 +106,7 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 	get_num(&nbr, base_from);
 	get_sign(&nbr, &sign);
 
-	printf("str: %s\n", nbr);
 	num_ten = atoi_base_to_ten(nbr, base_from);
-	printf("num: %d\n", num_ten);
 	arr_base = itoa_ten_to_base(num_ten, base_to, sign);
 
 	return (arr_base);
